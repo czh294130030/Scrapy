@@ -1,5 +1,7 @@
 import scrapy
 
+# 爬页面
+# scrapy crawl quotes
 
 class QuotesSpider(scrapy.Spider):
     name = "quotes"
