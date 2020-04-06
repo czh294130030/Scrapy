@@ -48,9 +48,5 @@ class selenium_spider(scrapy.Spider):
         else:
             print('到登录页面失败')
 
-    def parse_profile(self, response):
-        # 判断风险预警节点Ajax请求加载完成
-        WebDriverWait(driver, 10).until(EC.invisibility_of_element((By.ID, 'progressBar1')))
-
     def parse_None(self, response):
         pass
