@@ -49,7 +49,7 @@ class selenium_spider(scrapy.Spider):
             more = driver.find_element_by_xpath(
                 '//div[@class="projectlist"]/div[@class="left_list"]/div[@class="left_title"]/div[@class="more"]/a')
             more.click()
-            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, 'iframe')))
+            sleep(5)
             # selenium切换到iframe
             driver.switch_to.frame(1)
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'grid_Plan')))
