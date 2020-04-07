@@ -35,7 +35,8 @@ class selenium_spider(scrapy.Spider):
             driver.find_element_by_id('btnlogin').click()
             # 等到id为jbsx的元素加载完毕(页面跳转完成),最多等10秒
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'jbsx')))
-            # 判断风险预警节点Ajax请求加载完成
+            print('获取逾期未完成节点开始')
+            # 通过进度条隐藏，判断风险预警节点Ajax请求加载完成
             WebDriverWait(driver, 10).until(EC.invisibility_of_element((By.ID, 'progressBar1')))
             # 获取界面元素内容
             trs = driver.find_element_by_id('table1').find_elements_by_tag_name('tr')
@@ -44,7 +45,26 @@ class selenium_spider(scrapy.Spider):
                     'project_report_name': tr.find_elements_by_tag_name('td')[0].text,
                     'task_name': tr.find_elements_by_tag_name('td')[3].text
                 }
-            print('获取风险预警节点完成')
+            print('更多')
+            more = driver.find_element_by_xpath(
+                '//div[@class="projectlist"]/div[@class="left_list"]/div[@class="left_title"]/div[@class="more"]/a')
+            more.click()
+            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, 'iframe')))
+            # selenium切换到iframe
+            driver.switch_to.frame(1)
+            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'grid_Plan')))
+            trs = driver.find_elements_by_xpath('//div[@id="grid_Plan"]/table[@class="lineTable"]/tbody/tr')
+            yield{'more':'more'}
+            for tr in trs:
+                yield {
+                    'project_report_name': tr.find_elements_by_tag_name('td')[0].text,
+                    'task_name': tr.find_elements_by_tag_name('td')[3].text
+                }
+            # 退出iframe
+            driver.switch_to.default_content()
+            progressBar2 = driver.find_element_by_id('progressBar2')
+            driver.close()
+            print('爬网完成')
         else:
             print('到登录页面失败')
 
