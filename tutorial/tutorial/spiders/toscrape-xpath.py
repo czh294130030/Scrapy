@@ -2,6 +2,7 @@
 import scrapy
 
 # 根据xpath获取内容
+# cmd到scrapy.cfg所在的目录，如（E:\Study\Python\Scrapy\tutorial）
 # scrapy crawl toscrape-xpath
 # scrapy crawl toscrape-xpath -o toscrape-xpath.json
 

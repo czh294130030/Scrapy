@@ -2,6 +2,7 @@
 import scrapy
 
 # 根据html标签获取标签内容
+# cmd到scrapy.cfg所在的目录，如（E:\Study\Python\Scrapy\tutorial）
 # scrapy crawl toscrape-css
 # scrapy crawl toscrape-css -o toscrape-css.json
 

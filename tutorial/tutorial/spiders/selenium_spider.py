@@ -9,7 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 chrome_driver = r"F:\install\chrome\chromedriver.exe"
 driver = webdriver.Chrome(executable_path=chrome_driver)
 
-
+# cmd到scrapy.cfg所在的目录，如（E:\Study\Python\Scrapy\tutorial）
 # scrapy crawl selenium_spider
 # scrapy crawl selenium_spider -o selenium_spider.json
 

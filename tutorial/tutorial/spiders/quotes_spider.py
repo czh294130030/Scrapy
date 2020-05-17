@@ -1,6 +1,7 @@
 import scrapy
 
 # 爬页面
+# cmd到scrapy.cfg所在的目录，如（E:\Study\Python\Scrapy\tutorial）
 # scrapy crawl quotes
 
 class QuotesSpider(scrapy.Spider):
